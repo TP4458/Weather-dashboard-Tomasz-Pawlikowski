@@ -15,6 +15,7 @@ var tempDispEl = $("#tempDisp")
 var humidityDispEl = $("#humDisp")
 var pressureDispEl = $("#pressDisp")
 var windDispEl = $("#windDisp")
+var iconDispEl = $("#icon")
 
 
 
@@ -53,8 +54,13 @@ function getWeather(longitude, latitude) {
         }
         let degrees = windDirection(angle)
 
+        var icon = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+        
         cityDispEl.text(data.name)
         tempDispEl.text("Temperature: " + data.main.temp + "°C")
+        iconDispEl.html(`
+            <img src="${icon}">
+            `)
         humidityDispEl.text("Humidity: " + data.main.humidity + "%")
         pressureDispEl.text("Pressure: " + data.main.pressure + "HpA")
         windDispEl.text("Wind: " + data.wind.speed + degrees)
