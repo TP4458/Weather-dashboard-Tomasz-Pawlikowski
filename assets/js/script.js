@@ -8,7 +8,7 @@ var forecast;
 var fiveDay;
 var history;
 var historyStorage;
-var city = "London"
+var city = "Winsford"
 var dateDispEl = $("#dateDisp")
 var cityDispEl = $("#cityDisp")
 var tempDispEl = $("#tempDisp")
@@ -16,6 +16,7 @@ var humidityDispEl = $("#humDisp")
 var pressureDispEl = $("#pressDisp")
 var windDispEl = $("#windDisp")
 var iconDispEl = $("#icon")
+var fiveDayEl = $("#fiveDay")
 
 
 
@@ -37,7 +38,7 @@ function geoLocate() {
 }
 geoLocate()
 
-//get weather data
+//get current weather data
 function getWeather(longitude, latitude) {
     let requestUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&&appid=${apiKey}`
     fetch (requestUrl)
@@ -63,25 +64,36 @@ function getWeather(longitude, latitude) {
             `)
         humidityDispEl.text("Humidity: " + data.main.humidity + "%")
         pressureDispEl.text("Pressure: " + data.main.pressure + "HpA")
-        windDispEl.text("Wind: " + data.wind.speed + degrees)
+        windDispEl.text("Wind: " + data.wind.speed + "m/s" + degrees)
 
         console.log(data)
     })
 }
+
+//get 5 dayforecast
 function get5Day(longitude, latitude) {
-    let requestUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}`
+    let requestUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`
     fetch (requestUrl)
     .then (function(response) {
         return response.json();
     })
     .then (function(data) {
         console.log(data)
-        for (let i = 0; i<=data.list.length; i+=8)
+        for (let i = 0; i<=data.list.length -1; i+=8){
+            console.log(data.list[i].dt_txt)
+        fiveDayEl.append(`
+            <div class ="fiveDayWrap fiveDayEl">
+                <p class = "date">${data.list[i].dt_txt}</p>
+                <p class="temp">Temp: ${(data.list[i].main.temp)} °C</p>
+                <p class="wind">Wind: ${data.list[i].wind.speed} m/s</p>
+                <p class="humid">Humidity: ${data.list[i].main.humidity}%</p>
+            </div>
+    `)}
+            })
 
-        console.log(data.list[i])
-    })
+    }
 
-}
+
 
 
     
