@@ -11,22 +11,32 @@
     <title>Document</title>
 </head>
 <body>
+<div class = "container">
+    <div class = "side">
+        <h3 id = "form-header">
+            search for a city:
+        </h3>
+        <form id = "form">
+            <input class = "form-search" type= "text" placeholder="New York" />
+            <button type="submit" class = "btn btn-outline-success" id ="search-button">
+            search
+            </button> 
+        </form>
+        <div id = "history" class = "history-list">
+        </div>
+    </div>
 
-<div id = side>
-    <div id = form></div>
-    <div id = history></div>
-</div>
-
-<div id = forecast>
-    <div id = dateDisp></div>
-    <div id = cityDisp></div>
-    <div id = tempDisp></div>
-    <div id = humDisp></div>
-    <div id = icon></div>
-    <div id = pressDisp></div>
-    <div id = windDisp></div>
-</div>
-<div id = fiveDay>
+    <div id = "forecast">
+        <div id = "dateDisp"></div>
+        <div id = "cityDisp"></div>
+        <div id = "tempDisp"></div>
+        <div id = "humDisp"></div>
+        <div id = "icon"></div>
+        <div id = "pressDisp"></div>
+        <div id = "windDisp"></div>
+    </div>
+    <div id = "fiveDay">
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script

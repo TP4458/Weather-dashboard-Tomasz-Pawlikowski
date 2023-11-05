@@ -93,6 +93,13 @@ function get5Day(longitude, latitude) {
 
     }
 
+    //TODO
+        // add weather icon to 5day loop
+        // create form Elements
+        // create search history element
+            //clear history button
+            //save to local storage
+        //styling of all elements
 
 
 
