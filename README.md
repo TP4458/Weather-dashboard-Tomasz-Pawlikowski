@@ -1,5 +1,21 @@
 # 06 Server-Side APIs: Weather Dashboard
 
+## Description
+
+This app provides a weather forecast for the selected location (by city name). It will display current temperature, humidity, pressure, wind speed and direction. It al;so will provide a forecast for the next five days, including temperature, wind speed, and humidity. an Icon representing the weather is visible in both current and five day forecasts. Recent searches are saved into local storage and displayed, and can be clicked on to access weather data for that location.
+
+## Deployed application URL
+
+
+
+## Screenshot
+
+![Alt text](image.png)
+
+## Future development
+
+Styling needs to be added
+
 ## Your Task
 
 Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Your challenge is to build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
