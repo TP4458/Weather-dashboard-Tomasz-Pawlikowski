@@ -6,7 +6,7 @@ This app provides a weather forecast for the selected location (by city name). I
 
 ## Deployed application URL
 
-(https://tp4458.github.io/Weather-dashboard-Tomasz-Pawlikowski/)[https://tp4458.github.io/Weather-dashboard-Tomasz-Pawlikowski/]
+[https://tp4458.github.io/Weather-dashboard-Tomasz-Pawlikowski/](https://tp4458.github.io/Weather-dashboard-Tomasz-Pawlikowski/)
 
 ## Screenshot
 
