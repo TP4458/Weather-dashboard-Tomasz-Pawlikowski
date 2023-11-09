@@ -11,42 +11,33 @@
     <title>Document</title>
 </head>
 <body>
-<div class = "container">
-    <div class = "side">
-        <h3 id = "form-header">
-            search for a city:
-        </h3>
-        <form id = "form">
-            <input id = "form-search" type= "text" placeholder="New York" />
-            <div>
-            <button id = "search" type="submit" class = "btn btn-outline-success" >
-            search
-            </button> 
-            </div>
-        </form>
-        <div id = "history" class = "history-list">
-        </div>
+
+
+    <h3 id = "form-header">
+        search for a city:
+    </h3>
+    <form id = "form">
+        <input id = "form-search" type= "text" placeholder="New York" ><button id = "search" type="submit" class = "btn btn-outline-success" >search</button> 
+
+    </form>
+    <div id = "history" class = "history-list">
     </div>
 
+
     <div id = "forecast">
-        <div id = "dateDisp"></div>
-        <div id = "cityDisp"></div>
-        <div id = "tempDisp"></div>
-        <div id = "humDisp"></div>
-        <div id = "icon"></div>
-        <div id = "pressDisp"></div>
-        <div id = "windDisp"></div>
+        <div id = "dateDisp" class="forecastEL"></div>
+        <div id = "cityDisp" class="forecastEL"></div>
+        <div id = "tempDisp" class="forecastEL"></div>
+        <div id = "humDisp" class="forecastEL"></div>
+        <div id = "icon" class="forecastEL"></div>
+        <div id = "pressDisp" class="forecastEL"></div>
+        <div id = "windDisp" class="forecastEL"></div>
     </div>
-    <br>
+    <h3>forecast for the next 5 days:</h3>
     <div id = "fiveDay">
     </div>
-</div>
+
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script
-    src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
-    crossorigin="anonymous"
-></script>
 <script src="./assets/js/script.js"></script>
 </body>
 </html>

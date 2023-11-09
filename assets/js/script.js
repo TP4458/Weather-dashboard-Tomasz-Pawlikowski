@@ -31,7 +31,6 @@ function geoLocate() {
             return response.json();
         })
         .then(function(data) {
-            console.log(data);
             longitude = data[0].lon,
             latitude = data[0].lat
         getWeather(longitude, latitude)
@@ -47,7 +46,6 @@ function getWeather(longitude, latitude) {
     })
     .then(function(data){
 
-        //function to convert wind direction in degrees to an arrow credit: https://stackoverflow.com/a/54677081
         let angle = (data.wind.deg)
             function windDirection(angle){
             const directions = ['↑', '↗', '→', '↘', '↓', '↙', '←', '↖'];
@@ -65,8 +63,6 @@ function getWeather(longitude, latitude) {
         humidityDispEl.text(`Humidity: ${data.main.humidity}%`)
         pressureDispEl.text(`Pressure: ${data.main.pressure}HpA`)
         windDispEl.text(`Wind: ${data.wind.speed}m/s ${degrees}`)
-
-        console.log(data)
     })
 }
 
@@ -78,18 +74,16 @@ function get5Day(longitude, latitude) {
         return response.json();
     })
     .then (function(data) {
-        
-        console.log(data)
-        for (let i = 0; i<=data.list.length -1; i+=8){
+                for (let i = 0; i<=data.list.length -1; i+=8){
             var icon = `https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png`;
             console.log(data.list[i].dt_txt)
 
         fiveDayEl.append(`
-            <div class ="fiveDayWrap fiveDayEl">
-                <p class = "date">${data.list[i].dt_txt}</p>
-                <p class="temp">Temp: ${(data.list[i].main.temp)}°C <img src="${icon}"></p>
-                <p class="wind">Wind: ${data.list[i].wind.speed} m/s</p>
-                <p class="humid">Humidity: ${data.list[i].main.humidity}%</p>
+            <div class="fiveDayWrap">
+                <p class= "forecastEL date">${data.list[i].dt_txt}</p>
+                <p class="forecastEL temp">Temp: ${(data.list[i].main.temp)}°C <img src="${icon}"></p>
+                <p class="forecastEL wind">Wind: ${data.list[i].wind.speed} m/s</p>
+                <p class="forecastEL humid">Humidity: ${data.list[i].main.humidity}%</p>
             </div>
     `)}
             })
@@ -113,7 +107,13 @@ saveBtn.on("click", function(event) {
     fiveDayEl.empty()
     
 })
-
+//click on search history to search
+$(document).on("click", ".past-city", pastSearch);
+function pastSearch() {
+    city = $(this).attr("data-city")
+    geoLocate()
+    fiveDayEl.empty()
+}
 
 //get seacrh results from locakl storage
 function searchHistory(){
@@ -124,25 +124,16 @@ function searchHistory(){
     }
 }
 
-
 //display past search results
 function dispHistory(pastCities) {
     historyStorage.empty()
     for (let i = 0; i < pastCities.length; i++) {
         const pastCity = pastCities[i];
-        console.log(pastCity)
         historyStorage.append($(`<button class="past-city btn" data-city="${pastCity}">`).text(pastCity));
         }
-
-    
     }
 
-$(document).on("click", "past-city", pastSearch);
-function pastSearch() {
-    city = $(this).attr("data-city")
-    geoLocate()
-    fiveDayEl.empty()
-}
+
 searchHistory()
 
 
