@@ -6,7 +6,7 @@
 const apiKey = "9151489e00d2d58fb7dd317366e92b06";
 
 
-var historyStorage = ("#history");
+let historyStorage = $("#history");
 var city= "";
 var dateDispEl = $("#dateDisp")
 var cityDispEl = $("#cityDisp")
@@ -16,7 +16,6 @@ var pressureDispEl = $("#pressDisp")
 var windDispEl = $("#windDisp")
 var iconDispEl = $("#icon")
 var fiveDayEl = $("#fiveDay")
-
 let saveBtn = $("#search")
 let history = []; 
 
@@ -39,8 +38,6 @@ function geoLocate() {
         get5Day(longitude, latitude)
         })
 }
-
-
 //get current weather data
 function getWeather(longitude, latitude) {
     let requestUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&&appid=${apiKey}`
@@ -99,6 +96,7 @@ function get5Day(longitude, latitude) {
 
     }
  
+//search button/form functionality
 saveBtn.on("click", function(event) {
     event.preventDefault();
 
@@ -112,43 +110,48 @@ saveBtn.on("click", function(event) {
     }
     geoLocate()
     searchHistory()
+    fiveDayEl.empty()
+    
 })
 
+
+//get seacrh results from locakl storage
 function searchHistory(){
     let searchHistory = localStorage.getItem("history-saved");
     if (searchHistory) {
         history = JSON.parse(searchHistory);
-        dispHistory()
+        dispHistory(history)
     }
+}
+
+
+//display past search results
+function dispHistory(pastCities) {
+    historyStorage.empty()
+    for (let i = 0; i < pastCities.length; i++) {
+        const pastCity = pastCities[i];
+        console.log(pastCity)
+        historyStorage.append($(`<button class="past-city btn" data-city="${pastCity}">`).text(pastCity));
+        }
+
+    
+    }
+
+$(document).on("click", "past-city", pastSearch);
+function pastSearch() {
+    city = $(this).attr("data-city")
+    geoLocate()
+    fiveDayEl.empty()
 }
 searchHistory()
 
 
-function dispHistory(history) {
-    for (let i = 0; i < history.length; i++) {
-        const pastCity = history[i];
-        historyStorage.append($(`<button class="past-city btn" data-city="${pastCity}">`).text(pastCity));
 
-    
-    }
-}
-//    })
-    //TODO
 
-        // create form Elements
-        //eventlistener
-        // create search history element
-        //clear history button
-        //save to local storage
-        //styling of all elements
 
 
 
     
 
 
-// function timeNow(){
-//     var currentTime = dayjs().format("DD-MM-YYYY HH:mm:ss");
-//      dateDispEl.text(currentTime);
-//     }
-//   setInterval(timeNow, 1000)
+
